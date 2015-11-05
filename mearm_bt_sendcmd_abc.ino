@@ -8,18 +8,19 @@
 
 // === 調試使用 (由於伺服馬達的起始位置不完全相同,可供不同 MeArm 使用)===
 
-int STD_DELAY=12; //連續動作時,每一度的delay, 4很快,12很有機器人的慢節奏
-int LOOP_DELAY=10; //
+//int STD_DELAY=12; //連續動作時,每一度的delay, 4很快,12很有機器人的慢節奏
+int LOOP_DELAY=15; //
 int MOVE_DELAY=50; //一個小動作後的delay
-int LOOP_STEP=1;
+//int LOOP_STEP=1;
 
-// 401 servo#4 to 0
-// 402 servo#4 to 180
+int degA=30;
+int degB=90;
+int degC=150;
 
-int mode=0;
+//int mode=0;
 
 
-int D90=90;
+//int D90=90;
 
 // for fixed combo
 int m1Min=60; //閉
@@ -54,9 +55,6 @@ Servo servo2;
 Servo servo3;
 Servo servo4;
 
-int degA=30;
-int degB=90;
-int degC=150;
 
 
 // 四個pin腳
@@ -78,54 +76,40 @@ void servoRun(int servoNum,int pos){
   if (servoNum==1){
     servo=servo1;
     fromPos=m1Pos;
-    
     if (pos>m1Max || pos<m1Min){
       return;
     }
-
     m1Pos=pos;
-    
-    
-
-    
   }
+
   if (servoNum==2){
     servo=servo2;
     fromPos=m2Pos;
-   
     if (pos>m2Max || pos<m2Min){
       return;
     }
-
     m2Pos=pos;
-  
-  
   }
+  
   if (servoNum==3){
     servo=servo3;
     fromPos=m3Pos;
-     if (pos>m3Max || pos<m3Min){
+    if (pos>m3Max || pos<m3Min){
       return;
     }
-
     m3Pos=pos;
-}
+  }
+  
   if (servoNum==4){
     servo=servo4;
     fromPos=m4Pos;
-     if (pos>m4Max || pos<m4Min){
+    if (pos>m4Max || pos<m4Min){
       return;
     }
-
     m4Pos=pos;
-
   }  
 
-//  Serial.print("servoAct from ");
-//  Serial.print(fromPos);
-//  Serial.print(" to ");
-//  Serial.println(pos);
-   
+  //
   servoAct(servo, fromPos, pos);
 }
 
@@ -138,30 +122,18 @@ void servoAct(Servo servo,int m, int n){
   if (m<n){
     for (int i=m;i<=n;i++){
       servo.write(i*1);
-      if (mode>400 && mode<999){
         delay(LOOP_DELAY);
         
-      }else{
-        delay(STD_DELAY);
-      }
     }
   }  
   if (m>n){
     for (int i=m;i>=n;i--){
       servo.write(i*1);
-      if (mode>400 && mode<999){
         delay(LOOP_DELAY);
-        
-      }else{
-        delay(STD_DELAY);
-      }
     }
   } 
-   if (mode>400 && mode<999){
-        delay(LOOP_DELAY);
-   }else{
   delay(MOVE_DELAY);
-   }
+ 
 }
 
 
@@ -186,20 +158,6 @@ void putObjLite(){
   servoRun(2,m2Min); 
   servoRun(3,m3Max);  
 }
-
-
-
-void wakeup(){
-  int temp;
-  for (int i=1;i<=4;i++){
-    for (int k=1;k<=3;k++){
-      temp=k*10;
-      servoRun(i,90-temp);
-      servoRun(i,90+temp);
-    }
-  }
-  delay(1000);
-} 
 
 void initPos(){
   servoRun(1,90);
