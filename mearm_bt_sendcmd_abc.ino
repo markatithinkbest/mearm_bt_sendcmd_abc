@@ -8,21 +8,15 @@
 
 // === 調試使用 (由於伺服馬達的起始位置不完全相同,可供不同 MeArm 使用)===
 
-//int STD_DELAY=12; //連續動作時,每一度的delay, 4很快,12很有機器人的慢節奏
 int LOOP_DELAY=15; //
 int MOVE_DELAY=50; //一個小動作後的delay
-//int LOOP_STEP=1;
 
 int degA=30;
 int degB=90;
 int degC=150;
 
-//int mode=0;
 
-
-//int D90=90;
-
-// for fixed combo
+// === Min and Max for 4 Servos ===
 int m1Min=60; //閉
 int m1Max=100; //開
 int m2Min=75; // 後
@@ -33,20 +27,8 @@ int m4Min=30; // m4右 順時針
 int m4Max=150; // m4左 逆時針
 
 
-// for manual 
-//int m1Min=60; //閉
-//int m1Max=100; //開
-//int m2Min=30; // 後
-//int m2Max=150; // 前
-//int m3Min=30;  // 下
-//int m3Max=150; // 上
-//int m4Min=30; // m4右 順時針
-//int m4Max=150; // m4左 逆時針
-
-
-
 // === 程式底層定義 (共同,不要隨意更動)===
-String str;
+//String str;
 SoftwareSerial BT(12, 13);
 
 // 4個伺服馬達
@@ -55,8 +37,6 @@ Servo servo2;
 Servo servo3;
 Servo servo4;
 
-
-
 // 四個pin腳
 // Arduino Senser Sheld 5.0
 int m1Pin=3;
@@ -64,6 +44,7 @@ int m2Pin=5;
 int m3Pin=6;
 int m4Pin=9;
 
+// default degreee for 4 Servos
 int m1Pos=90;
 int m2Pos=90;
 int m3Pos=90;
