@@ -246,18 +246,6 @@ void moveObjFromAtoB(int fromPos, int toPos){
   putObjLite();
 }
 
-void combo2Lite(){
-  moveObjFromAtoB(120, 150);
-//  moveObjFromAtoB(90, 120);
-  moveObjFromAtoB(60, 90);
-//  moveObjFromAtoB(30, 60);
-//
-//  moveObjFromAtoB(60, 30);
-//  moveObjFromAtoB(90, 60);
-//  moveObjFromAtoB(120, 90);
-//  moveObjFromAtoB(150, 120);
-} 
-
 void setup() {
   // === attach ===
   servo1.attach(m1Pin); // 手爪
@@ -265,45 +253,10 @@ void setup() {
   servo3.attach(m3Pin); // 上下
   servo4.attach(m4Pin); // 底盤
 
-  // === initial movement ===
-//  wakeup();   
-//  initPos();
-//  testMin();
-//  initPos();  
-//  testMax();
-//  initPos();
-//  initPos();
-//  combo2Lite();
-//  delay(1000);
-  initPos();
+  // === init Serial and Bluetooth ===
   Serial.begin(9600);
-  Serial.println("=== setup === done");
   BT.begin(9600);
-  Serial.println("=== setup === done");
 }
-
-
-void debugModePosition(){
-  Serial.print("mode=");
-  Serial.print(mode);
-  Serial.print(" ");
-  
-  Serial.print(m1Pos);
-  Serial.print(",");
-  Serial.print(m2Pos);
-  Serial.print(",");
-  Serial.print(m3Pos);
-  Serial.print(",");
-  Serial.print(m4Pos);
-  Serial.println();
-  
-}
-
-
-
-
-int m1New=0;
-
 
 void runCmd(String str){
     if (str=="=>=>"){
@@ -354,157 +307,6 @@ void runCmd(String str){
       return;    
     }
 }
-
-
-void setMode(){
-   if (str.length()>=5){
-    String cmd=str.substring(0,4);
-    String strDegree=str.substring(4);
-    
-    int degree=strDegree.toInt();
-    Serial.print("cmd is =>");
-    Serial.print(cmd);
-    Serial.print(" str degree is =>");
-    Serial.println(strDegree);
-    Serial.print(" int degree is =>");
-    Serial.println(degree);
- 
-    
-    
-    if (cmd=="TAKE"){
-      takeObjAt(degree);
-    }
-    if (cmd=="PUT_"){
-      putObjAt(degree);
-    }
-
-    if (cmd=="MOVE"){
-    int a=str.substring(4,7).toInt();
-    int b=str.substring(7).toInt();
-     Serial.print(" a =>");
-    Serial.println(a);
- Serial.print(" b =>");
-    Serial.println(b);
- 
-      
-      moveObjFromAtoB(a,b);
-    }
-    
-  }
-  
-  if (str=="0"){
-      mode=0;
-    }
-
-    if (str=="101"){
-      mode=101;
-    }
-    if (str=="102"){
-      mode=102;
-    }
-
-    if (str=="201"){
-      mode=201;
-    }
-    if (str=="202"){
-      mode=202;
-    }
-    if (str=="301"){
-      mode=301;
-    }
-    if (str=="302"){
-      mode=302;
-    }
-    if (str=="401"){
-      mode=401;
-    }
-    if (str=="402"){
-      mode=402;
-    }
-    if (str=="999"){
-      mode=999;
-    }
-
-  
-
-  
-}
-
-void setModeBT(){
-
-  
-    if (str=="0"){
-      mode=0;
-    }
-
-    if (str=="101"){
-      mode=101;
-    }
-    if (str=="102"){
-      mode=102;
-    }
-
-    if (str=="201"){
-      mode=201;
-    }
-    if (str=="202"){
-      mode=202;
-    }
-    if (str=="301"){
-      mode=301;
-    }
-    if (str=="302"){
-      mode=302;
-    }
-    if (str=="401"){
-      mode=401;
-    }
-    if (str=="402"){
-      mode=402;
-    }
-    if (str=="999"){
-      mode=999;
-    }
-
-    if (str=="M1_LEFT"){
-      mode=101;
-    }
-    if (str=="M1_RIGHT"){
-      mode=102;
-    }
-
-    if (str=="M2_LEFT"){
-      mode=201;
-    }
-    if (str=="M2_RIGHT"){
-      mode=202;
-    }
-    if (str=="M3_LEFT"){
-      mode=301;
-    }
-    if (str=="M3_RIGHT"){
-      mode=302;
-    }
-if (str=="M3_LOWER"){
-      mode=301;
-    }
-    if (str=="M3_RAISE"){
-      mode=302;
-    }
-
-    
-    if (str=="M4_TURN_LEFT"){
-      mode=402;
-    }
-    if (str=="M4_TURN_RIGHT"){
-      mode=401;
-    }
-    
-
-  
-}
-
-
 
 void loop() {
   String cmd;
