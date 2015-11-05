@@ -1,6 +1,7 @@
 /*
- * 10/19/2015
- * Mark Chen in Caotun, Taiwan
+ * 2015-11-5
+ * Mark Chen 
+ * Taichuang, Taiwan
  *
  */
 #include <SoftwareSerial.h>
@@ -28,7 +29,6 @@ int m4Max=150; // m4左 逆時針
 
 
 // === 程式底層定義 (共同,不要隨意更動)===
-//String str;
 SoftwareSerial BT(12, 13);
 
 // 4個伺服馬達
@@ -119,22 +119,21 @@ void servoAct(Servo servo,int m, int n){
 
 
 void takeObjLite(){
-   servoRun(1,m1Max);//
-  servoRun(3,m3Min);//手臂向下  
-  servoRun(2,m2Max);//手臂向前
+  servoRun(1,m1Max);
+  servoRun(3,m3Min);  
+  servoRun(2,m2Max);
   delay(500); 
-  //m1Close(); 
-  servoRun(1,m1Min);//
+  servoRun(1,m1Min);
   delay(500); 
   servoRun(2,m2Min); 
   servoRun(3,m3Max);  
 }
+
 void putObjLite(){
-  servoRun(3,m3Min);//手臂向下  
-  servoRun(2,m2Max);//手臂向前
+  servoRun(3,m3Min);
+  servoRun(2,m2Max);
   delay(500); 
-  //m1Close(); 
-  servoRun(1,m1Max);//
+  servoRun(1,m1Max);
   delay(500); 
   servoRun(2,m2Min); 
   servoRun(3,m3Max);  
