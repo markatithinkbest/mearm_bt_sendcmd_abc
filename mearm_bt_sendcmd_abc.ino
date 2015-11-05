@@ -208,36 +208,6 @@ void initPos(){
   servoRun(4,90);
   delay(1000);
 }
-void testMin(){
-  servoRun(1,m1Min);
-  servoRun(2,m2Min);
-  servoRun(3,m3Min);
-  servoRun(4,m4Min);
-  delay(1000);
-} 
-
-void testMax(){
-  servoRun(1,m1Max);
-  servoRun(2,m2Max);
-  servoRun(3,m3Max);
-  servoRun(4,m4Max);
-  delay(1000);
-} 
-
-
-void takeObjAt(int pos){
-  servoRun(4,pos);  
-  takeObjLite();  
-  
-}
-void putObjAt(int pos){
-  servoRun(4,pos);  
-  putObjLite();  
-  
-}
-
-
-
 
 void moveObjFromAtoB(int fromPos, int toPos){
   servoRun(4,fromPos);  
@@ -319,4 +289,5 @@ void loop() {
     runCmd(cmd);      
   }
 }
+
 
