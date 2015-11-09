@@ -1,7 +1,7 @@
 /*
  * 2015-11-5
  * Mark Chen 
- * Taichuang, Taiwan
+ * Taichung, Taiwan
  *
  */
 #include <SoftwareSerial.h>
